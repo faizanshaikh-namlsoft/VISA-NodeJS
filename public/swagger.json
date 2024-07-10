@@ -1,0 +1,82 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Visa API",
+        "description": "API documentation for Visa payment integration"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": ["http"],
+    "paths": {
+        "/pushfunds": {
+            "post": {
+                "summary": "Push funds transaction",
+                "description": "Push funds transaction using Visa Direct API",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "systemsTraceAuditNumber": { "type": "number" },
+                                "retrievalReferenceNumber": { "type": "string" },
+                                "localTransactionDateTime": { "type": "string" },
+                                "acquiringBin": { "type": "number" },
+                                "acquirerCountryCode": { "type": "string" },
+                                "senderPrimaryAccountNumber": { "type": "string" },
+                                "senderCardExpiryDate": { "type": "string" },
+                                "senderCurrencyCode": { "type": "string" },
+                                "amount": { "type": "string" },
+                                "businessApplicationId": { "type": "string" },
+                                "transactionIdentifier": { "type": "string" },
+                                "merchantCategoryCode": { "type": "number" },
+                                "sourceOfFundsCode": { "type": "string" },
+                                "recipientName": { "type": "string" },
+                                "recipientPrimaryAccountNumber": { "type": "string" },
+                                "cardAcceptor": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": { "type": "string" },
+                                        "terminalId": { "type": "string" },
+                                        "idCode": { "type": "string" },
+                                        "address": {
+                                            "type": "object",
+                                            "properties": {
+                                                "state": { "type": "string" },
+                                                "county": { "type": "string" },
+                                                "country": { "type": "string" },
+                                                "zipCode": { "type": "string" }
+                                            }
+                                        }
+                                    }
+                                },
+                                "senderReference": { "type": "string" },
+                                "transactionCurrencyCode": { "type": "string" },
+                                "accountType": { "type": "string" },
+                                "pointOfServiceData": {
+                                    "type": "object",
+                                    "properties": {
+                                        "panEntryMode": { "type": "string" },
+                                        "posConditionCode": { "type": "string" },
+                                        "motoECIIndicator": { "type": "string" }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful transaction",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
